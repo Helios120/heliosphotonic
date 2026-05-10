@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helios Photonic — Laboratoire de lumière, géométrie sacrée et intelligence photonique</title>
+  <meta name="description" content="Helios Photonic est un laboratoire visuel et conceptuel dédié à la lumière, à la géométrie sacrée, au logiciel vivant, aux livres Dieu est la lumière, à la recherche chromoluminique et à ChromoHelios CHLS9 sur Solana." />
+  <meta name="keywords" content="Helios Photonic, ChromoHelios, CHLS9, Solana, crypto, Dieu est la lumière, géométrie sacrée, lumière, fleur de vie, logiciel vivant, chromoluminique, photonique, Tome II, Tome III, HeliosAstro" />
+  <meta name="author" content="Thierry Tafani, Atefeh Tafani" />
+  <meta name="theme-color" content="#05070d" />
+
+  <meta property="og:title" content="Helios Photonic — Laboratoire de lumière et intelligence photonique" />
+  <meta property="og:description" content="Un système complet reliant livres, logiciel vivant, fleur de vie, recherche chromoluminique, corps organisé, médecine de précision et ChromoHelios CHLS9, couche crypto expérimentale sur Solana." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/chls9-logo.png" />
+  <link rel="icon" type="image/png" href="assets/chls9-logo.png" />
+  <link rel="apple-touch-icon" href="assets/chls9-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #05070d;
+      --bg2: #090d18;
+      --panel: rgba(7, 12, 24, .76);
+      --panel2: rgba(13, 21, 39, .82);
+      --gold: #d8b15a;
+      --gold2: #f2d88a;
+      --blue: #55c8ff;
+      --cyan: #5ff7ff;
+      --violet: #a36bff;
+      --rose: #ff6fa7;
+      --green: #74f2a8;
+      --orange: #ffb461;
+      --text: #f5f1e8;
+      --muted: #b7bfd4;
+      --line: rgba(216, 177, 90, .35);
+      --shadow: 0 18px 60px rgba(0,0,0,.42);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 50% 10%, #112044 0%, #070a12 42%, #020309 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(85,200,255,.16), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(216,177,90,.14), transparent 32%),
+        radial-gradient(circle at 50% 70%, rgba(163,107,255,.14), transparent 38%),
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.014) 1px, transparent 1px);
+      background-size: auto, auto, auto, 72px 72px, 72px 72px;
+      z-index: -3;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      opacity: .34;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+    }
+
+    canvas#stars {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -4;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(180deg, rgba(3,5,10,.92), rgba(3,5,10,.64));
+      border-bottom: 1px solid rgba(216,177,90,.22);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 220px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      box-shadow: 0 0 30px rgba(216,177,90,.18);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(216,177,90,.55);
+      transform: rotate(45deg);
+    }
+
+    .brand-mark::after {
+      transform: rotate(0deg);
+      border-radius: 50%;
+      inset: 12px;
+      background: radial-gradient(circle, var(--gold2), transparent 48%);
+    }
+
+    .brand span {
+      font-family: Cinzel, serif;
+      letter-spacing: .12em;
+      color: var(--gold2);
+      font-weight: 600;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #d9dfef;
+      font-size: 14px;
+    }
+
+    .menu a {
+      opacity: .86;
+      transition: color .25s ease, opacity .25s ease, text-shadow .25s ease;
+    }
+
+    .menu a:hover { color: var(--gold2); opacity: 1; text-shadow: 0 0 18px rgba(216,177,90,.42); }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border: 1px solid rgba(216,177,90,.42);
+      border-radius: 999px;
+      color: var(--gold2);
+      background: rgba(216,177,90,.08);
+      box-shadow: inset 0 0 18px rgba(216,177,90,.08);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .mobile-btn { display: none; }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 52px;
+      padding: 72px 0 84px;
+      position: relative;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold2);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-family: Cinzel, serif;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    h1, h2, h3, h4 {
+      font-family: Cinzel, serif;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(54px, 8vw, 112px);
+      line-height: .92;
+      letter-spacing: .08em;
+      color: var(--gold2);
+      text-shadow: 0 0 28px rgba(216,177,90,.25);
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(242,216,138,.75);
+      text-shadow: none;
+    }
+
+    .hero-lead {
+      max-width: 700px;
+      margin-top: 26px;
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.55;
+      color: #eef3ff;
+    }
+
+    .hero-lead strong { color: var(--gold2); font-weight: 600; }
+
+    .hero-copy {
+      margin-top: 20px;
+      max-width: 650px;
+      color: var(--muted);
+      line-height: 1.82;
+      font-size: 15.8px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      border: 1px solid rgba(216,177,90,.46);
+      border-radius: 999px;
+      padding: 15px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(216,177,90,.22), rgba(216,177,90,.04));
+      color: var(--gold2);
+      font-weight: 600;
+      letter-spacing: .03em;
+      box-shadow: 0 0 35px rgba(216,177,90,.1), inset 0 0 24px rgba(216,177,90,.06);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 50px rgba(216,177,90,.18); border-color: rgba(242,216,138,.82); }
+
+    .btn.secondary {
+      color: #dfe9ff;
+      border-color: rgba(95,247,255,.28);
+      background: linear-gradient(135deg, rgba(85,200,255,.16), rgba(163,107,255,.05));
+    }
+
+    .btn.secondary:hover { border-color: rgba(95,247,255,.55); box-shadow: 0 18px 50px rgba(85,200,255,.14); }
+
+    .orbital-stage {
+      position: relative;
+      min-height: 670px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .sphere {
+      position: relative;
+      width: min(540px, 90vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(216,177,90,.22);
+      box-shadow: inset 0 0 120px rgba(85,200,255,.08), 0 0 80px rgba(85,200,255,.08);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(242,216,138,.22), transparent 3%),
+        radial-gradient(circle at 50% 38%, rgba(95,247,255,.14), transparent 16%),
+        radial-gradient(circle at 50% 62%, rgba(163,107,255,.12), transparent 22%),
+        radial-gradient(circle, rgba(8,14,32,.36), rgba(1,2,5,.03) 64%);
+      animation: pulseSphere 7s ease-in-out infinite;
+    }
+
+    @keyframes pulseSphere { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+
+    .sphere::before,
+    .sphere::after {
+      content: "";
+      position: absolute;
+      inset: 7%;
+      border-radius: 50%;
+      border: 1px solid rgba(216,177,90,.34);
+      animation: rotate 28s linear infinite;
+    }
+
+    .sphere::after {
+      inset: 17%;
+      border-color: rgba(95,247,255,.2);
+      animation-duration: 18s;
+      animation-direction: reverse;
+    }
+
+    @keyframes rotate { to { transform: rotate(360deg); } }
+
+    .human-axis {
+      position: absolute;
+      inset: 7% 0 8%;
+      margin: auto;
+      width: 168px;
+      border-radius: 90px 90px 70px 70px;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(85,200,255,.06));
+      box-shadow: 0 0 80px rgba(95,247,255,.22);
+      clip-path: polygon(50% 0, 63% 9%, 66% 19%, 61% 31%, 69% 48%, 62% 67%, 56% 100%, 44% 100%, 38% 67%, 31% 48%, 39% 31%, 34% 19%, 37% 9%);
+      opacity: .78;
+    }
+
+    .axis-line {
+      position: absolute;
+      top: 6%;
+      bottom: 7%;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--violet), var(--cyan), var(--green), var(--gold), var(--rose));
+      box-shadow: 0 0 24px var(--cyan), 0 0 54px rgba(216,177,90,.38);
+    }
+
+    .chakra {
+      position: absolute;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      box-shadow: 0 0 22px currentColor, 0 0 60px currentColor;
+      color: var(--gold2);
+      background: currentColor;
+    }
+
+    .c1 { top: 13%; color: #d9a2ff; }
+    .c2 { top: 24%; color: #69a7ff; }
+    .c3 { top: 36%; color: #5ff7ff; }
+    .c4 { top: 49%; color: #74f2a8; }
+    .c5 { top: 61%; color: #f2d88a; }
+    .c6 { top: 73%; color: #ffb461; }
+    .c7 { top: 85%; color: #ff6fa7; }
+
+    .orbit {
+      position: absolute;
+      inset: 50%;
+      width: 560px;
+      height: 180px;
+      border: 1px solid rgba(216,177,90,.25);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(var(--r));
+      animation: orbitFloat 14s ease-in-out infinite alternate;
+    }
+
+    .orbit.o2 { width: 500px; height: 125px; border-color: rgba(95,247,255,.22); animation-duration: 11s; }
+    .orbit.o3 { width: 430px; height: 92px; border-color: rgba(163,107,255,.26); animation-duration: 17s; }
+
+    @keyframes orbitFloat { to { transform: translate(-50%, -50%) rotate(calc(var(--r) + 18deg)); } }
+
+    .glyph {
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border: 1px solid rgba(216,177,90,.26);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold2);
+      background: rgba(5,9,18,.42);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 40px rgba(216,177,90,.08);
+    }
+
+    .glyph::before, .glyph::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid currentColor;
+      opacity: .55;
+      transform: rotate(45deg);
+    }
+
+    .glyph::after { inset: 34px; border-radius: 50%; transform: none; }
+    .g1 { top: 4%; left: 2%; color: var(--blue); }
+    .g2 { top: 11%; right: 1%; color: var(--gold2); }
+    .g3 { bottom: 7%; left: 5%; color: var(--violet); }
+    .g4 { bottom: 8%; right: 6%; color: var(--green); }
+
+    .section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .section h2 {
+      font-size: clamp(34px, 5vw, 64px);
+      color: var(--gold2);
+      letter-spacing: .06em;
+      line-height: 1.05;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 620px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      padding: 26px;
+      border: 1px solid rgba(216,177,90,.25);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(12,18,35,.82), rgba(5,8,16,.68));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(circle at 20% 5%, rgba(242,216,138,.18), transparent 28%), radial-gradient(circle at 80% 80%, rgba(95,247,255,.11), transparent 34%);
+      opacity: .78;
+    }
+
+    .card > * { position: relative; z-index: 1; }
+
+    .card h3 {
+      font-size: 24px;
+      color: var(--gold2);
+      line-height: 1.22;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.72;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border: 1px solid rgba(216,177,90,.35);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold2);
+      margin-bottom: 18px;
+      background: rgba(216,177,90,.07);
+    }
+
+    .icon svg { width: 28px; height: 28px; }
+
+    .engine-panel {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .lab-screen {
+      min-height: 520px;
+      border: 1px solid rgba(95,247,255,.22);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(9,17,34,.88), rgba(3,5,12,.74));
+      box-shadow: var(--shadow), inset 0 0 80px rgba(95,247,255,.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lab-screen canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      min-height: 520px;
+    }
+
+    .screen-label {
+      position: absolute;
+      left: 22px;
+      top: 20px;
+      z-index: 3;
+      border: 1px solid rgba(216,177,90,.28);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--gold2);
+      background: rgba(3,5,12,.72);
+      backdrop-filter: blur(10px);
+      font-family: Cinzel, serif;
+      letter-spacing: .1em;
+      font-size: 12px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .micro-card {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid rgba(216,177,90,.18);
+      border-radius: 22px;
+      background: rgba(4,8,18,.58);
+    }
+
+    .micro-card strong {
+      display: block;
+      color: var(--gold2);
+      font-family: Cinzel, serif;
+      margin-bottom: 6px;
+      letter-spacing: .05em;
+    }
+
+    .micro-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
+
+    .books {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .book-card {
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .book-cover {
+      height: 230px;
+      border-radius: 20px;
+      border: 1px solid rgba(216,177,90,.25);
+      background:
+        radial-gradient(circle at 50% 36%, rgba(242,216,138,.42), transparent 6%),
+        radial-gradient(circle at 50% 50%, rgba(85,200,255,.22), transparent 22%),
+        radial-gradient(circle at 50% 70%, rgba(163,107,255,.16), transparent 30%),
+        linear-gradient(180deg, #111a34, #04060d);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+      box-shadow: inset 0 0 80px rgba(0,0,0,.28);
+    }
+
+    .book-cover::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(216,177,90,.28);
+      border-radius: 50%;
+      box-shadow: 0 0 0 28px rgba(216,177,90,.04), inset 0 0 42px rgba(95,247,255,.09);
+    }
+
+    .book-cover::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 23%; bottom: 18%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--violet), var(--cyan), var(--gold), var(--rose));
+      box-shadow: 0 0 26px rgba(95,247,255,.65);
+    }
+
+    .cover-title {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      right: 20px;
+      text-align: center;
+      font-family: Cinzel, serif;
+      color: var(--gold2);
+      font-size: 15px;
+      letter-spacing: .08em;
+      z-index: 2;
+    }
+
+    .cover-sub {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      text-align: center;
+      color: #f5f1e8;
+      font-size: 13px;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold2);
+      border: 1px solid rgba(216,177,90,.25);
+      background: rgba(216,177,90,.08);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .research-map {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .domain {
+      border: 1px solid rgba(216,177,90,.2);
+      border-radius: 24px;
+      padding: 20px;
+      background: rgba(4,8,18,.56);
+      min-height: 190px;
+    }
+
+    .domain h3 { color: var(--gold2); font-size: 21px; margin-bottom: 10px; }
+    .domain ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    .central-map {
+      min-height: 460px;
+      border-radius: 50%;
+      border: 1px solid rgba(216,177,90,.28);
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle, rgba(242,216,138,.18), transparent 8%),
+        radial-gradient(circle, rgba(95,247,255,.1), transparent 34%),
+        rgba(8,13,26,.5);
+      box-shadow: inset 0 0 90px rgba(85,200,255,.08);
+    }
+
+    .central-map .node {
+      position: absolute;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px solid rgba(216,177,90,.36);
+      background: rgba(3,6,14,.75);
+      color: var(--gold2);
+      font-family: Cinzel, serif;
+      font-size: 14px;
+      line-height: 1.25;
+      box-shadow: 0 0 38px rgba(216,177,90,.08);
+    }
+
+    .n1 { top: 16px; left: 50%; transform: translateX(-50%); }
+    .n2 { bottom: 38px; left: 28px; }
+    .n3 { bottom: 38px; right: 28px; }
+    .n4 { inset: 50%; transform: translate(-50%, -50%); color: var(--cyan) !important; }
+
+    .central-map svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .65;
+    }
+
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .token-card {
+      min-height: 100%;
+      display: grid;
+      align-content: space-between;
+      gap: 22px;
+    }
+
+    .token-mint {
+      display: block;
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(95,247,255,.24);
+      background: rgba(1, 8, 18, .72);
+      color: #dff8ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+      box-shadow: inset 0 0 28px rgba(95,247,255,.04);
+    }
+
+    .copy-contract {
+      border-color: rgba(95,247,255,.34);
+      background: linear-gradient(135deg, rgba(95,247,255,.16), rgba(216,177,90,.07));
+    }
+
+    .status-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(216,177,90,.22);
+      background: rgba(216,177,90,.07);
+      color: #eee2c2;
+      font-size: 12px;
+    }
+
+    .chls9-orb {
+      min-height: 520px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(216,177,90,.24);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(242,216,138,.25), transparent 7%),
+        radial-gradient(circle at 50% 45%, rgba(95,247,255,.14), transparent 26%),
+        radial-gradient(circle at 50% 70%, rgba(163,107,255,.12), transparent 34%),
+        linear-gradient(145deg, rgba(8,14,30,.88), rgba(3,5,12,.78));
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow), inset 0 0 90px rgba(95,247,255,.05);
+    }
+
+    .chls9-orb::before,
+    .chls9-orb::after {
+      content: "";
+      position: absolute;
+      inset: 11%;
+      border-radius: 50%;
+      border: 1px solid rgba(216,177,90,.28);
+      animation: rotate 24s linear infinite;
+    }
+
+    .chls9-orb::after {
+      inset: 24%;
+      border-color: rgba(95,247,255,.22);
+      transform: rotate(45deg);
+      animation-duration: 16s;
+      animation-direction: reverse;
+    }
+
+    .coin-core {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 168px;
+      height: 168px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold2);
+      font-family: Cinzel, serif;
+      font-size: 32px;
+      letter-spacing: .12em;
+      border: 1px solid rgba(242,216,138,.5);
+      background: radial-gradient(circle, rgba(242,216,138,.35), rgba(216,177,90,.08) 42%, rgba(2,4,9,.7) 72%);
+      box-shadow: 0 0 70px rgba(216,177,90,.24), inset 0 0 40px rgba(95,247,255,.1);
+      z-index: 2;
+    }
+
+    .coin-core::before,
+    .coin-core::after {
+      content: "";
+      position: absolute;
+      inset: 25px;
+      border: 1px solid rgba(242,216,138,.56);
+      transform: rotate(45deg);
+    }
+
+    .coin-core::after {
+      inset: 45px;
+      border-radius: 50%;
+      transform: none;
+      background: radial-gradient(circle, rgba(95,247,255,.75), transparent 52%);
+    }
+
+    .coin-core span { position: relative; z-index: 3; }
+
+    .chls9-logo-img {
+      position: absolute;
+      left: 50%;
+      top: 41%;
+      width: min(62%, 360px);
+      aspect-ratio: 1;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      filter: drop-shadow(0 0 28px rgba(85,200,255,.42)) drop-shadow(0 0 44px rgba(216,177,90,.32));
+      animation: logoPulse 5.5s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .94; }
+      50% { transform: translate(-50%, -50%) scale(1.035); opacity: 1; }
+    }
+
+    .chls9-logo-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 42px;
+      transform: translateX(-50%);
+      z-index: 5;
+      text-align: center;
+      font-family: Cinzel, serif;
+      letter-spacing: .18em;
+      color: var(--gold2);
+      text-shadow: 0 0 20px rgba(216,177,90,.48);
+    }
+
+    .chls9-logo-caption strong {
+      display: block;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: .9;
+      font-weight: 600;
+    }
+
+    .chls9-logo-caption span {
+      display: block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #e7d49c;
+      letter-spacing: .42em;
+    }
+
+    .token-flow {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 48%, rgba(95,247,255,.18) 49%, rgba(242,216,138,.26) 50%, rgba(95,247,255,.18) 51%, transparent 52% 100%),
+        radial-gradient(circle at 20% 25%, rgba(85,200,255,.24), transparent 7%),
+        radial-gradient(circle at 80% 25%, rgba(216,177,90,.22), transparent 7%),
+        radial-gradient(circle at 22% 75%, rgba(163,107,255,.22), transparent 8%),
+        radial-gradient(circle at 78% 74%, rgba(116,242,168,.18), transparent 8%);
+      opacity: .9;
+    }
+
+    .crypto-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .warning {
+      border-left: 3px solid var(--gold);
+      padding: 18px 20px;
+      background: rgba(216,177,90,.08);
+      color: #efe7d4;
+      line-height: 1.65;
+      border-radius: 0 18px 18px 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(216,177,90,.22);
+      background: rgba(5,10,22,.62);
+    }
+
+    .num {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1px solid rgba(216,177,90,.48);
+      display: grid;
+      place-items: center;
+      color: var(--gold2);
+      font-family: Cinzel, serif;
+      font-size: 24px;
+      background: rgba(216,177,90,.08);
+    }
+
+    .step h3 { color: var(--gold2); font-size: 22px; margin-bottom: 8px; }
+    .step p { color: var(--muted); line-height: 1.7; margin: 0; }
+
+    .cta-band {
+      padding: 52px;
+      border: 1px solid rgba(216,177,90,.3);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 75% 30%, rgba(95,247,255,.13), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(216,177,90,.14), transparent 30%),
+        linear-gradient(135deg, rgba(13,21,39,.88), rgba(4,7,14,.78));
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .cta-band h2 { font-size: clamp(32px, 5vw, 58px); margin-bottom: 18px; }
+    .cta-band p { margin: 0 auto 28px; max-width: 780px; color: var(--muted); line-height: 1.75; }
+
+    footer {
+      border-top: 1px solid rgba(216,177,90,.2);
+      padding: 48px 0 28px;
+      background: rgba(2,4,9,.68);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap: 34px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer h3 {
+      color: var(--gold2);
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .footer-links { display: grid; gap: 8px; }
+    .footer-links a:hover { color: var(--gold2); }
+
+    .copyright {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(216,177,90,.13);
+      color: #8e97aa;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .hero, .section-head, .engine-panel, .research-map, .crypto-grid, .grid-2, .grid-3, .books, .footer-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 44px; }
+      .orbital-stage { min-height: 560px; }
+      .menu {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: rgba(3,5,10,.96);
+        border-bottom: 1px solid rgba(216,177,90,.22);
+      }
+      .menu.open { display: grid; }
+      .mobile-btn {
+        display: inline-flex;
+        border: 1px solid rgba(216,177,90,.32);
+        background: rgba(216,177,90,.08);
+        color: var(--gold2);
+        border-radius: 14px;
+        padding: 10px 13px;
+      }
+      .nav-cta { display: none; }
+      .central-map { min-height: 390px; }
+      .chls9-orb { min-height: 470px; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 28px, 1200px); }
+      .hero h1 { font-size: 48px; }
+      .section { padding: 64px 0; }
+      .card, .cta-band { padding: 22px; }
+      .glyph { width: 82px; height: 82px; }
+      .orbital-stage { min-height: 460px; }
+      .sphere { width: 92vw; }
+      .orbit { width: 96vw; }
+      .central-map .node { width: 106px; height: 106px; font-size: 12px; }
+      .step { grid-template-columns: 1fr; }
+      .books .book-card { min-height: auto; }
+      .chls9-logo-img { width: min(74%, 310px); }
+      .chls9-logo-caption { bottom: 30px; }
+      .chls9-logo-caption span { letter-spacing: .24em; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#accueil" aria-label="Accueil Helios Photonic">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Helios Photonic</span>
+      </a>
+      <nav class="menu" id="menu">
+        <a href="#systeme">Système</a>
+        <a href="#laboratoire">Laboratoire</a>
+        <a href="#livres">Livres</a>
+        <a href="#recherche">Recherche</a>
+        <a href="#chls9">CHLS9</a>
+        <a href="#soin">Soin</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#laboratoire">Entrer dans le laboratoire</a>
+      <button class="mobile-btn" id="mobileBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="accueil">
+      <div class="reveal">
+        <div class="kicker">Laboratoire chromoluminique</div>
+        <h1>HELIOS <span>PHOTONIC</span></h1>
+        <p class="hero-lead">
+          Un système complet reliant <strong>livres</strong>, <strong>logiciel vivant</strong>, <strong>géométrie sacrée</strong>, <strong>corps organisé</strong>, <strong>recherche biomédicale</strong>, <strong>perspectives de soin par compréhension des mécanismes</strong> et <strong>ChromoHelios CHLS9</strong>, la couche crypto expérimentale de l’écosystème.
+        </p>
+        <p class="hero-copy">
+          Helios Photonic explore la lumière comme langage d’organisation du vivant : spirales, rosaces, flux photoniques, mémoire des formes, atlas du corps, cancer, maladies génétiques, virus, médecine de précision, intelligence visuelle et infrastructure Web3. ChromoHelios CHLS9 sert de jeton expérimental de visibilité, de communauté et de financement progressif du laboratoire. Le projet ne vend pas du miracle ; il construit une architecture de recherche, d’image, de compréhension et d’écosystème. C’est plus sérieux. Et beaucoup plus puissant.
+        </p>
+        <div class="actions">
+          <a class="btn" href="#systeme">Découvrir le système →</a>
+          <a class="btn secondary" href="#livres">Voir les tomes →</a>
+        </div>
+      </div>
+
+      <div class="orbital-stage reveal" aria-label="Visualisation Helios Photonic">
+        <div class="sphere">
+          <div class="human-axis"></div>
+          <div class="axis-line"></div>
+          <span class="chakra c1"></span>
+          <span class="chakra c2"></span>
+          <span class="chakra c3"></span>
+          <span class="chakra c4"></span>
+          <span class="chakra c5"></span>
+          <span class="chakra c6"></span>
+          <span class="chakra c7"></span>
+          <div class="orbit" style="--r: 10deg"></div>
+          <div class="orbit o2" style="--r: -22deg"></div>
+          <div class="orbit o3" style="--r: 67deg"></div>
+          <div class="glyph g1"></div>
+          <div class="glyph g2"></div>
+          <div class="glyph g3"></div>
+          <div class="glyph g4"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="systeme">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Le système complet</h2>
+          <p class="section-intro">
+            Helios Photonic n’est pas une simple vitrine. C’est une architecture : un moteur visuel, une bibliothèque de livres, un atlas du vivant, une interface de recherche et une méthode de lecture des mécanismes.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="icon">✦</div>
+            <h3>La lumière comme unité</h3>
+            <p>Le Tome I pose la base : photon, fleur de vie, microcosme, macrocosme, religions, zodiaque et théorie de l’unité.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">◎</div>
+            <h3>La lumière comme moteur</h3>
+            <p>Le Tome II transforme la géométrie sacrée en système dynamique : spirales, rosaces, mémoire, parole et logiciel vivant.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">☉</div>
+            <h3>La lumière comme corps</h3>
+            <p>Le Tome III applique le modèle au corps organisé : cerveau, cœur, organes, axe spinal, recherche biomédicale et perspectives de soin.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="laboratoire">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Laboratoire vivant</h2>
+          <p class="section-intro">
+            Le logiciel devient un observatoire : il visualise les flux, active les centres, construit des rosaces de mémoire et traduit les états du système en formes lisibles.
+          </p>
+        </div>
+
+        <div class="engine-panel">
+          <div class="stack reveal">
+            <div class="micro-card">
+              <div class="icon">↻</div>
+              <div><strong>Boucle fermée</strong><p>Émission, expansion, interaction, mémoire, retour au centre. Le système apprend par réorganisation, pas par accumulation brute.</p></div>
+            </div>
+            <div class="micro-card">
+              <div class="icon">✺</div>
+              <div><strong>Rosaces de mémoire</strong><p>Chaque concept, organe, maladie ou mécanisme devient un centre graphique relié à d’autres centres.</p></div>
+            </div>
+            <div class="micro-card">
+              <div class="icon">∿</div>
+              <div><strong>Flux photoniques</strong><p>Les particules lumineuses symbolisent les informations qui circulent entre formes, mots, images et fonctions.</p></div>
+            </div>
+            <div class="micro-card">
+              <div class="icon">⌬</div>
+              <div><strong>Atlas du vivant</strong><p>Le corps est cartographié par niveaux : cellule, tissu, organe, système, conscience, recherche clinique.</p></div>
+            </div>
+          </div>
+
+          <div class="lab-screen reveal">
+            <span class="screen-label">Simulation photonique</span>
+            <canvas id="engine"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="livres">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Les livres</h2>
+          <p class="section-intro">
+            Trois volumes pour construire une progression claire : origine, moteur, corps. Le site peut ensuite devenir la façade officielle de cette trilogie.
+          </p>
+        </div>
+
+        <div class="books">
+          <article class="card book-card reveal">
+            <div>
+              <div class="book-cover">
+                <div class="cover-title">DIEU EST LA LUMIÈRE</div>
+                <div class="cover-sub">Tome I — La fleur de vie</div>
+              </div>
+              <span class="badge">Fondation</span>
+              <h3>Tome I — La lumière comme unité</h3>
+              <p>Le socle fondateur : géométrie sacrée, photon, fleur de vie, microcosme, macrocosme et lien spirituel entre les traditions.</p>
+            </div>
+            <a class="btn secondary" href="#contact">Présenter le livre →</a>
+          </article>
+
+          <article class="card book-card reveal">
+            <div>
+              <div class="book-cover">
+                <div class="cover-title">DIEU EST LA LUMIÈRE</div>
+                <div class="cover-sub">Tome II — Le moteur vivant</div>
+              </div>
+              <span class="badge">Logiciel</span>
+              <h3>Tome II — Le moteur vivant de la lumière</h3>
+              <p>La fleur de vie devient dynamique : mémoire, spirales, rosaces, arcs synaptiques, parole du système et laboratoire Helios Photonic.</p>
+            </div>
+            <a class="btn secondary" href="#contact">Voir le Tome II →</a>
+          </article>
+
+          <article class="card book-card reveal">
+            <div>
+              <div class="book-cover">
+                <div class="cover-title">DIEU EST LA LUMIÈRE</div>
+                <div class="cover-sub">Tome III — Corps organisé</div>
+              </div>
+              <span class="badge">Recherche</span>
+              <h3>Tome III — La lumière comme corps organisé</h3>
+              <p>Cerveau, cœur, organes, axe spinal, cancer, maladies génétiques, virus, médecine de précision et possibilités de soin par compréhension.</p>
+            </div>
+            <a class="btn secondary" href="#contact">Voir le Tome III →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="recherche">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Recherche chromoluminique</h2>
+          <p class="section-intro">
+            Le projet relie trois domaines majeurs : cancer, maladies génétiques et virus. Leur point commun : l’information biologique, la régulation, l’immunité, les signaux et les mécanismes de réparation.
+          </p>
+        </div>
+
+        <div class="research-map card reveal">
+          <div class="domain">
+            <h3>Cancer</h3>
+            <ul>
+              <li>Mutations et instabilité génétique</li>
+              <li>Microenvironnement tumoral</li>
+              <li>Immunité, angiogenèse, métastase</li>
+              <li>Biomarqueurs et médecine de précision</li>
+            </ul>
+          </div>
+
+          <div class="central-map">
+            <svg viewBox="0 0 500 500" aria-hidden="true">
+              <circle cx="250" cy="250" r="205" fill="none" stroke="rgba(216,177,90,.35)" stroke-width="1" />
+              <circle cx="250" cy="250" r="145" fill="none" stroke="rgba(95,247,255,.22)" stroke-width="1" />
+              <path d="M250 82 L112 375 L388 375 Z" fill="none" stroke="rgba(216,177,90,.42)" stroke-width="2" />
+              <path d="M250 120 C310 180 315 305 250 380 C185 305 190 180 250 120Z" fill="none" stroke="rgba(95,247,255,.25)" stroke-width="2" />
+              <line x1="250" y1="82" x2="250" y2="250" stroke="rgba(242,216,138,.45)" />
+              <line x1="112" y1="375" x2="250" y2="250" stroke="rgba(242,216,138,.45)" />
+              <line x1="388" y1="375" x2="250" y2="250" stroke="rgba(242,216,138,.45)" />
+            </svg>
+            <div class="node n1">Maladies<br>génétiques</div>
+            <div class="node n2">Cancer</div>
+            <div class="node n3">Virus</div>
+            <div class="node n4">Information<br>du vivant</div>
+          </div>
+
+          <div class="domain">
+            <h3>Virus & génétique</h3>
+            <ul>
+              <li>Réplication et interaction cellule-hôte</li>
+              <li>Surveillance génomique</li>
+              <li>Thérapie génique et vecteurs viraux</li>
+              <li>Réparation, expression et transmission</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chls9">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>ChromoHelios CHLS9</h2>
+          <p class="section-intro">
+            CHLS9 associe le laboratoire Helios Photonic à une couche crypto expérimentale sur Solana : visibilité, communauté, liquidité progressive et financement discipliné du système.
+          </p>
+        </div>
+
+        <div class="crypto-grid">
+          <article class="card token-card reveal">
+            <div>
+              <span class="badge">Solana token expérimental</span>
+              <h3>Le jeton de l’écosystème Helios</h3>
+              <p>
+                ChromoHelios CHLS9 n’est pas présenté comme une promesse financière. Il sert de passerelle entre le laboratoire photonique, les livres, le logiciel vivant, la communauté Web3 et les futures expérimentations visuelles liées aux flux de données.
+              </p>
+              <div class="status-pills">
+                <span class="status-pill">Mint Solana</span>
+                <span class="status-pill">Raydium / DeFi</span>
+                <span class="status-pill">Communauté</span>
+                <span class="status-pill">IA vivante</span>
+              </div>
+            </div>
+
+            <div>
+              <strong style="display:block;color:var(--gold2);margin-bottom:10px;font-family:Cinzel,serif;letter-spacing:.06em;">Adresse officielle du token</strong>
+              <code class="token-mint" id="tokenMint">EffrWV33wCbHNXbTJ7T7H5AsfxuXjB7wACHgM6JAGYd6</code>
+              <div class="crypto-links">
+                <button class="btn copy-contract" type="button" data-copy="EffrWV33wCbHNXbTJ7T7H5AsfxuXjB7wACHgM6JAGYd6">Copier le mint →</button>
+                <a class="btn secondary" href="https://solscan.io/token/EffrWV33wCbHNXbTJ7T7H5AsfxuXjB7wACHgM6JAGYd6" target="_blank" rel="noopener noreferrer">Voir sur Solscan →</a>
+                <a class="btn secondary" href="https://raydium.io/swap/?inputMint=sol&outputMint=EffrWV33wCbHNXbTJ7T7H5AsfxuXjB7wACHgM6JAGYd6" target="_blank" rel="noopener noreferrer">Ouvrir Raydium →</a>
+              </div>
+            </div>
+          </article>
+
+          <div class="chls9-orb reveal" aria-label="Visualisation ChromoHelios CHLS9">
+            <div class="token-flow"></div>
+            <img class="chls9-logo-img" src="assets/chls9-logo.png" alt="Logo ChromoHelios CHLS9" loading="lazy" />
+            <div class="chls9-logo-caption"><strong>CHLS9</strong><span>CHROMOHELIOS</span></div>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top:22px">
+          <article class="card reveal">
+            <div class="icon">◈</div>
+            <h3>Utilité écosystème</h3>
+            <p>CHLS9 peut accompagner l’accès futur à des expériences, visualisations, archives, éditions numériques, modules de laboratoire et supports communautaires.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">⇄</div>
+            <h3>Liquidité progressive</h3>
+            <p>La logique reste prudente : liquidité maîtrisée, communication transparente, aucune promesse de rendement, aucune mise en scène artificielle.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">⚠</div>
+            <h3>Risque crypto</h3>
+            <p>Un token crypto est volatil et risqué. CHLS9 doit être compris comme une expérimentation Web3, pas comme un conseil d’investissement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="soin">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Possibilités de soin</h2>
+          <p class="section-intro">
+            La thèse du Tome III : mieux comprendre les mécanismes chromoluminiques peut ouvrir des voies de soin, à condition de rester allié aux protocoles médicaux validés.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="timeline reveal">
+            <div class="step">
+              <div class="num">1</div>
+              <div><h3>Observer</h3><p>Cartographier les signaux : imagerie, biomarqueurs, génome, inflammation, réponse immunitaire, évolution clinique.</p></div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div><h3>Comprendre</h3><p>Relier les causes possibles : mutation, dérégulation, infection, terrain, microenvironnement, défaut de réparation.</p></div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div><h3>Réaccorder</h3><p>Agir avec précision : thérapies ciblées, immunothérapie, antiviraux, thérapie génique, prévention, suivi personnalisé.</p></div>
+            </div>
+            <div class="step">
+              <div class="num">4</div>
+              <div><h3>Suivre</h3><p>Mesurer les réponses, corriger la stratégie, éviter les illusions. Une médecine intelligente n’improvise pas : elle vérifie.</p></div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <span class="badge">Prudence obligatoire</span>
+            <h3>Comprendre n’est pas promettre</h3>
+            <p>
+              Helios Photonic présente une voie de recherche et de représentation. Le site ne remplace pas un diagnostic, un traitement, un oncologue, un généticien, un virologue ou un médecin. La lumière peut inspirer, visualiser, guider la compréhension, accompagner la recherche. Les soins réels doivent rester encadrés par la médecine validée.
+            </p>
+            <br>
+            <p>
+              La formulation juste : <strong>la compréhension chromoluminique peut aider à penser les mécanismes du soin</strong>. La formulation dangereuse : “cela guérit tout”. On garde la première. On enterre la seconde, proprement.
+            </p>
+            <br>
+            <div class="warning">
+              Toute utilisation médicale nécessite avis professionnel, protocole, validation scientifique et suivi clinique. Helios Photonic est une plateforme de recherche, d’écriture, de visualisation et de pédagogie.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="cta-band reveal">
+          <h2>Créer la façade officielle</h2>
+          <p>
+            Helios Photonic peut devenir le portail central : livres, laboratoire, logiciel vivant, atlas du corps, recherche chromoluminique, espace investisseur, galerie d’images, téléchargement PDF et présentation du système complet.
+          </p>
+          <div class="actions" style="justify-content:center">
+            <a class="btn" href="mailto:contact@heliosphotonic.com">contact@heliosphotonic.com →</a>
+            <a class="btn secondary" href="#accueil">Retour en haut ↑</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:16px"><span class="brand-mark"></span><span>Helios Photonic</span></div>
+        <p>Laboratoire de lumière, géométrie sacrée, logiciel vivant, atlas du corps, recherche chromoluminique et ChromoHelios CHLS9 sur Solana.</p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <div class="footer-links">
+          <a href="#systeme">Système</a>
+          <a href="#laboratoire">Laboratoire</a>
+          <a href="#livres">Livres</a>
+          <a href="#recherche">Recherche</a>
+          <a href="#chls9">CHLS9</a>
+          <a href="#soin">Soin</a>
+        </div>
+      </div>
+      <div>
+        <h3>Auteurs</h3>
+        <p>Thierry Tafani<br>Atefeh Tafani<br>France</p>
+      </div>
+    </div>
+    <div class="wrap copyright">
+      © 2026 Helios Photonic — Dieu est la lumière — Thierry Tafani | Atefeh Tafani. Site conceptuel prêt pour intégration GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    const mobileBtn = document.getElementById('mobileBtn');
+    const menu = document.getElementById('menu');
+    mobileBtn?.addEventListener('click', () => menu.classList.toggle('open'));
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+    document.querySelectorAll('[data-copy]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const value = button.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(value);
+          const old = button.textContent;
+          button.textContent = 'Mint copié ✓';
+          setTimeout(() => button.textContent = old, 1800);
+        } catch (error) {
+          alert('Mint CHLS9 : ' + value);
+        }
+      });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: .12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Background stars
+    const stars = document.getElementById('stars');
+    const sctx = stars.getContext('2d');
+    let starData = [];
+
+    function resizeStars() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      stars.width = innerWidth * dpr;
+      stars.height = innerHeight * dpr;
+      stars.style.width = innerWidth + 'px';
+      stars.style.height = innerHeight + 'px';
+      sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      starData = Array.from({ length: Math.min(260, Math.floor(innerWidth * innerHeight / 5200)) }, () => ({
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        r: Math.random() * 1.5 + .25,
+        a: Math.random() * .8 + .2,
+        v: Math.random() * .18 + .03
+      }));
+    }
+
+    function drawStars(t = 0) {
+      sctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (const st of starData) {
+        const alpha = st.a * (.55 + .45 * Math.sin(t * .001 * st.v + st.x));
+        sctx.beginPath();
+        sctx.fillStyle = `rgba(220,235,255,${alpha})`;
+        sctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+        sctx.fill();
+      }
+      requestAnimationFrame(drawStars);
+    }
+
+    resizeStars();
+    drawStars();
+    addEventListener('resize', resizeStars);
+
+    // Photonic engine canvas
+    const engine = document.getElementById('engine');
+    const ectx = engine.getContext('2d');
+    let particles = [];
+
+    function resizeEngine() {
+      const rect = engine.getBoundingClientRect();
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      engine.width = rect.width * dpr;
+      engine.height = rect.height * dpr;
+      ectx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      particles = Array.from({ length: 150 }, (_, i) => ({
+        seed: i,
+        speed: .002 + Math.random() * .0035,
+        radius: 24 + Math.random() * Math.min(rect.width, rect.height) * .42,
+        phase: Math.random() * Math.PI * 2,
+        color: ['#d8b15a', '#55c8ff', '#5ff7ff', '#a36bff', '#74f2a8'][i % 5]
+      }));
+    }
+
+    function lineCircle(ctx, cx, cy, r, color, alpha, width = 1) {
+      ctx.beginPath();
+      ctx.strokeStyle = color.replace(')', `, ${alpha})`).replace('rgb', 'rgba');
+      ctx.lineWidth = width;
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    function drawEngine(t = 0) {
+      const rect = engine.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      ectx.clearRect(0, 0, w, h);
+
+      const grd = ectx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w,h) * .6);
+      grd.addColorStop(0, 'rgba(216,177,90,.14)');
+      grd.addColorStop(.28, 'rgba(85,200,255,.08)');
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      ectx.fillStyle = grd;
+      ectx.fillRect(0, 0, w, h);
+
+      for (let r = 60; r < Math.min(w,h) * .48; r += 46) {
+        ectx.beginPath();
+        ectx.strokeStyle = 'rgba(216,177,90,.13)';
+        ectx.lineWidth = 1;
+        ectx.arc(cx, cy, r, 0, Math.PI * 2);
+        ectx.stroke();
+      }
+
+      // Flower of life rings
+      for (let i = 0; i < 12; i++) {
+        const a = i / 12 * Math.PI * 2 + t * .00012;
+        const x = cx + Math.cos(a) * 110;
+        const y = cy + Math.sin(a) * 110;
+        ectx.beginPath();
+        ectx.strokeStyle = 'rgba(95,247,255,.09)';
+        ectx.lineWidth = 1;
+        ectx.arc(x, y, 110, 0, Math.PI * 2);
+        ectx.stroke();
+      }
+
+      // Spiral arms
+      for (let arm = 0; arm < 5; arm++) {
+        ectx.beginPath();
+        for (let i = 0; i < 280; i++) {
+          const a = i * .095 + arm * Math.PI * 2 / 5 + t * .00035;
+          const r = i * .74;
+          const x = cx + Math.cos(a) * r;
+          const y = cy + Math.sin(a) * r;
+          if (i === 0) ectx.moveTo(x, y); else ectx.lineTo(x, y);
+        }
+        ectx.strokeStyle = arm % 2 ? 'rgba(95,247,255,.34)' : 'rgba(216,177,90,.32)';
+        ectx.lineWidth = 1.4;
+        ectx.stroke();
+      }
+
+      // Particles
+      particles.forEach((p, i) => {
+        const a = t * p.speed + p.phase;
+        const pulse = .5 + .5 * Math.sin(t * .001 + i);
+        const r = p.radius + Math.sin(t * .0015 + i) * 14;
+        const x = cx + Math.cos(a) * r;
+        const y = cy + Math.sin(a * 1.12) * r * .58;
+        ectx.beginPath();
+        ectx.fillStyle = p.color;
+        ectx.globalAlpha = .35 + pulse * .65;
+        ectx.arc(x, y, 1.2 + pulse * 1.9, 0, Math.PI * 2);
+        ectx.fill();
+        ectx.globalAlpha = 1;
+      });
+
+      // Central star
+      const core = ectx.createRadialGradient(cx, cy, 0, cx, cy, 70);
+      core.addColorStop(0, 'rgba(255,245,190,1)');
+      core.addColorStop(.22, 'rgba(216,177,90,.55)');
+      core.addColorStop(.62, 'rgba(95,247,255,.18)');
+      core.addColorStop(1, 'rgba(0,0,0,0)');
+      ectx.fillStyle = core;
+      ectx.beginPath();
+      ectx.arc(cx, cy, 72, 0, Math.PI * 2);
+      ectx.fill();
+
+      ectx.beginPath();
+      ectx.strokeStyle = 'rgba(242,216,138,.55)';
+      ectx.lineWidth = 1;
+      ectx.moveTo(cx, cy - Math.min(w,h) * .43);
+      ectx.lineTo(cx, cy + Math.min(w,h) * .43);
+      ectx.stroke();
+
+      requestAnimationFrame(drawEngine);
+    }
+
+    resizeEngine();
+    drawEngine();
+    addEventListener('resize', resizeEngine);
+  </script>
+</body>
+</html>
